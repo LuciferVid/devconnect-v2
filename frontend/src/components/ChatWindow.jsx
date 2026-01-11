@@ -74,33 +74,33 @@ const ChatWindow = ({ recipient, onClose }) => {
 
   return (
     <div className="fixed bottom-4 right-4 w-80 md:w-96 z-50">
-      <Card className="flex flex-col h-[500px] p-0 overflow-hidden shadow-2xl border-primary-200 dark:border-primary-900">
+      <Card className="flex flex-col h-[500px] p-0 overflow-hidden shadow-2xl border-white/5 bg-black/60 backdrop-blur-2xl">
         {/* Header */}
-        <div className="p-4 bg-primary-600 dark:bg-primary-900 text-white flex justify-between items-center">
+        <div className="p-4 bg-gradient-to-r from-primary-900/80 to-primary-800/80 backdrop-blur-md text-white flex justify-between items-center border-b border-white/5">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center font-bold">
+            <div className="w-8 h-8 bg-primary-500/20 rounded-full flex items-center justify-center font-bold text-primary-300 border border-primary-500/30">
               {recipient.name[0]}
             </div>
             <div>
               <h3 className="font-bold text-sm">{recipient.name}</h3>
-              <span className="text-xs text-primary-100">@{recipient.username}</span>
+              <span className="text-xs text-primary-400/80">@{recipient.username}</span>
             </div>
           </div>
           <div className="flex gap-2">
-            <button onClick={() => setIsMinimized(true)} className="hover:bg-white/20 p-1 rounded">
+            <button onClick={() => setIsMinimized(true)} className="hover:bg-white/10 p-1.5 rounded-lg transition-colors">
               <Minimize2 size={16} />
             </button>
-            <button onClick={onClose} className="hover:bg-white/20 p-1 rounded">
+            <button onClick={onClose} className="hover:bg-red-500/20 hover:text-red-400 p-1.5 rounded-lg transition-colors">
               <X size={16} />
             </button>
           </div>
         </div>
 
         {/* Messages */}
-        <div className="flex-grow overflow-y-auto p-4 space-y-4 bg-gray-50 dark:bg-slate-900">
+        <div className="flex-grow overflow-y-auto p-4 space-y-4 bg-transparent custom-scrollbar">
           {messages.length === 0 && (
-            <div className="text-center text-gray-500 dark:text-gray-400 mt-10 text-sm">
-              Start a conversation with {recipient.name}
+            <div className="text-center text-gray-500 mt-10 text-sm italic font-light">
+              Start a encrypted conversation with {recipient.name}
             </div>
           )}
           {messages.map((msg, idx) => {
@@ -109,10 +109,10 @@ const ChatWindow = ({ recipient, onClose }) => {
               <div key={idx} className={`flex ${isMe ? 'justify-end' : 'justify-start'}`}>
                 <div
                   className={`
-                    max-w-[80%] p-3 rounded-lg text-sm
+                    max-w-[80%] p-3 rounded-2xl text-sm leading-relaxed
                     ${isMe
-                      ? 'bg-primary-600 text-white rounded-br-none'
-                      : 'bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 text-gray-800 dark:text-gray-200 rounded-bl-none'}
+                      ? 'bg-primary-600/90 text-white rounded-br-none shadow-[0_4px_12px_rgba(14,165,233,0.3)]'
+                      : 'bg-white/5 border border-white/10 text-gray-200 rounded-bl-none backdrop-blur-sm'}
                   `}
                 >
                   {msg.content}
@@ -124,15 +124,15 @@ const ChatWindow = ({ recipient, onClose }) => {
         </div>
 
         {/* Input */}
-        <form onSubmit={handleSend} className="p-3 bg-white dark:bg-slate-800 border-t border-gray-200 dark:border-slate-700 flex gap-2">
+        <form onSubmit={handleSend} className="p-4 bg-white/[0.02] border-t border-white/5 flex gap-2">
           <input
             type="text"
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
-            placeholder="Type a message..."
-            className="flex-grow bg-gray-100 dark:bg-slate-900 border-none rounded-lg px-4 py-2 text-sm focus:ring-1 focus:ring-primary-500 dark:text-white"
+            placeholder="Secure message..."
+            className="flex-grow bg-white/5 border border-white/10 rounded-xl px-4 py-2 text-sm focus:ring-1 focus:ring-primary-500 focus:border-primary-500 transition-all text-white placeholder-gray-500"
           />
-          <Button type="submit" variant="primary" className="p-2 h-auto rounded-lg">
+          <Button type="submit" variant="primary" className="p-2 h-auto rounded-xl shadow-[0_0_15px_rgba(14,165,233,0.2)]">
             <Send size={18} />
           </Button>
         </form>

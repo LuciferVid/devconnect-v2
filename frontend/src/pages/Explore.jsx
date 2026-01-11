@@ -76,33 +76,41 @@ const Explore = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredPosts.map((post, idx) => (
               <ScrollReveal key={post._id || idx} delay={0.1 * (idx % 3)}>
-                <Card className="h-full flex flex-col hover:border-primary-500/30 hover:shadow-[0_0_30px_rgba(14,165,233,0.15)] transition-all duration-300 group">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-10 h-10 bg-primary-500/10 rounded-full flex items-center justify-center text-primary-400 font-bold border border-primary-500/20">
-                      {post.author?.name?.[0] || 'U'}
+                <Card className="h-full flex flex-col hover:border-primary-500/30 hover:shadow-[0_0_40px_rgba(14,165,233,0.1)] transition-all duration-500 group relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-primary-500/5 rounded-full blur-3xl -z-10 group-hover:bg-primary-500/10 transition-colors"></div>
+
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-10 h-10 rounded-full bg-primary-500/10 border border-primary-500/20 flex items-center justify-center text-primary-400 font-bold overflow-hidden">
+                      {post.author?.avatar ? (
+                        <img src={post.author.avatar} alt={post.author.name} className="w-full h-full object-cover" />
+                      ) : (
+                        post.author?.name?.[0] || 'U'
+                      )}
                     </div>
                     <div>
                       <h3 className="font-bold text-white group-hover:text-primary-400 transition-colors">{post.author?.name}</h3>
-                      <p className="text-xs text-gray-500">@{post.author?.username}</p>
+                      <p className="text-xs text-gray-500 tracking-wider">@{post.author?.username}</p>
                     </div>
                   </div>
 
-                  <p className="text-gray-300 mb-6 flex-grow leading-relaxed font-light line-clamp-4">
+                  <p className="text-gray-300 mb-8 flex-grow leading-relaxed font-light line-clamp-4 text-sm">
                     {post.content}
                   </p>
 
-                  <div className="pt-4 border-t border-white/10 flex items-center justify-between text-gray-400 text-sm">
-                    <div className="flex gap-4">
-                      <span className="flex items-center gap-1 hover:text-red-500 transition-colors cursor-pointer">
-                        <Heart size={16} /> {post.likes?.length || 0}
-                      </span>
-                      <span className="flex items-center gap-1 hover:text-primary-400 transition-colors cursor-pointer">
-                        <MessageSquare size={16} /> {post.comments?.length || 0}
-                      </span>
+                  <div className="pt-6 border-t border-white/5 flex items-center justify-between text-gray-500 text-xs">
+                    <div className="flex gap-5">
+                      <button className="flex items-center gap-1.5 hover:text-red-400 transition-colors group/btn">
+                        <Heart size={16} className="group-hover/btn:fill-red-400 transition-all" />
+                        <span className="font-medium">{post.likes?.length || 0}</span>
+                      </button>
+                      <button className="flex items-center gap-1.5 hover:text-primary-400 transition-colors group/btn">
+                        <MessageSquare size={16} className="group-hover/btn:fill-primary-400/20 transition-all" />
+                        <span className="font-medium">{post.comments?.length || 0}</span>
+                      </button>
                     </div>
-                    <span className="hover:text-white transition-colors cursor-pointer">
+                    <button className="p-2 hover:bg-white/5 rounded-lg transition-colors">
                       <Share2 size={16} />
-                    </span>
+                    </button>
                   </div>
                 </Card>
               </ScrollReveal>

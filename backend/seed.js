@@ -47,7 +47,7 @@ const users = [
 const posts = [
   {
     authorIdx: 0,
-    content: "Just released v2.0 of my React animation library! 🚀 It now supports spring physics and gesture controls. Check it out on GitHub.",
+    content: "Just released the latest version of my React animation library! 🚀 It now supports spring physics and gesture controls. Check it out on GitHub.",
     tags: ["react", "opensource", "animation"],
     likes: 42,
     comments: 12

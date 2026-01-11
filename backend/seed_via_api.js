@@ -29,8 +29,8 @@ const users = [
 const posts = [
   {
     authorIdx: 0,
-    title: "React Animation Library v2.0",
-    content: "Just released v2.0 of my React animation library! 🚀 It now supports spring physics and gesture controls. Check it out on GitHub.",
+    title: "React Animation Library",
+    content: "Just released the latest version of my React animation library! 🚀 It now supports spring physics and gesture controls. Check it out on GitHub.",
     tags: ["react", "animation"]
   },
   {

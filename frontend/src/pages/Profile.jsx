@@ -63,33 +63,34 @@ const Profile = () => {
 
         {/* Hero Card */}
         <ScrollReveal>
-          <Card className="mb-8 border-primary-500/20 shadow-[0_0_50px_rgba(14,165,233,0.1)]">
-            <div className="flex flex-col md:flex-row gap-8 items-start">
-              <div className="w-32 h-32 bg-primary-500/10 rounded-full flex items-center justify-center text-primary-400 text-4xl font-bold flex-shrink-0 border border-primary-500/20 shadow-[0_0_20px_rgba(14,165,233,0.2)]">
+          <Card className="mb-8 relative overflow-visible border-primary-500/20 shadow-[0_0_50px_rgba(14,165,233,0.1)]">
+            <div className="absolute -top-10 -right-10 w-40 h-40 bg-primary-500/10 blur-[60px] rounded-full pointer-events-none"></div>
+            <div className="flex flex-col md:flex-row gap-8 items-start relative z-10">
+              <div className="w-32 h-32 bg-gradient-to-br from-primary-500/20 to-purple-500/20 rounded-full flex items-center justify-center text-primary-400 text-4xl font-bold flex-shrink-0 border border-primary-500/30 shadow-[0_0_30px_rgba(14,165,233,0.3)] group-hover:scale-105 transition-transform duration-500">
                 {user.name[0]}
               </div>
               <div className="flex-grow w-full">
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-4">
                   <div>
-                    <h1 className="text-4xl font-bold text-white tracking-tight mb-1">{user.name}</h1>
+                    <h1 className="text-4xl font-bold text-white tracking-tight mb-1 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">{user.name}</h1>
                     <p className="text-xl text-primary-400 font-medium">@{user.username}</p>
                   </div>
                   <div className="flex gap-3">
-                    <Button variant="secondary" onClick={() => setShowChat(true)}>Message</Button>
-                    <Button variant="primary">Follow</Button>
+                    <Button variant="secondary" onClick={() => setShowChat(true)} className="backdrop-blur-md bg-white/5 border-white/10 hover:bg-white/10">Message</Button>
+                    <Button variant="primary" className="shadow-[0_0_20px_rgba(14,165,233,0.3)] hover:shadow-[0_0_30px_rgba(14,165,233,0.5)]">Follow</Button>
                   </div>
                 </div>
 
                 <p className="text-lg text-gray-300 mb-6 max-w-2xl leading-relaxed font-light">
-                  {user.role} • {user.bio}
+                  <span className="text-primary-300 font-medium">{user.role}</span> • {user.bio}
                 </p>
 
                 <div className="flex flex-wrap gap-6 text-sm text-gray-400 mb-8 font-medium">
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 hover:text-primary-400 transition-colors cursor-default">
                     <MapPin size={18} className="text-primary-500" />
                     {user.location}
                   </div>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 hover:text-primary-400 transition-colors">
                     <LinkIcon size={18} className="text-primary-500" />
                     <a href={`https://${user.website}`} className="hover:text-white transition-colors">{user.website}</a>
                   </div>
@@ -101,7 +102,7 @@ const Profile = () => {
 
                 <div className="flex flex-wrap gap-2">
                   {user.techStack?.map(tech => (
-                    <span key={tech} className="px-4 py-1.5 bg-white/5 border border-white/10 text-gray-300 rounded-full text-sm font-medium hover:bg-white/10 transition-colors cursor-default">
+                    <span key={tech} className="px-4 py-1.5 bg-white/5 border border-white/10 text-gray-300 rounded-full text-sm font-medium hover:bg-primary-500/10 hover:border-primary-500/30 hover:text-primary-300 transition-all duration-300 cursor-default">
                       {tech}
                     </span>
                   ))}

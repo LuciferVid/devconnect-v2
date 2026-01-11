@@ -21,8 +21,13 @@ const userSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    required: true,
+    required: function () { return !this.githubId; }, // Only required if not OAuth user
     minlength: 6
+  },
+  githubId: {
+    type: String,
+    unique: true,
+    sparse: true // Allows multiple null/empty values
   },
   bio: {
     type: String,

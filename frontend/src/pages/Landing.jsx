@@ -5,6 +5,8 @@ import { Rocket, Users, MessageSquare, ArrowRight, Code2, Cpu, Globe, CheckCircl
 import Button from '../components/Button';
 import Card from '../components/Card';
 import ScrollReveal from '../components/ScrollReveal';
+import SpaceBackground from '../components/SpaceBackground';
+import LiveTerminal from '../components/LiveTerminal';
 import api from '../services/api';
 
 const Landing = () => {
@@ -34,11 +36,8 @@ const Landing = () => {
   }, []);
 
   return (
-    <div className="min-h-screen pt-20 relative overflow-hidden bg-dark-bg text-white selection:bg-primary-500/30">
-
-      {/* Background Gradients */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-primary-600/20 rounded-full blur-[120px] -z-10 opacity-30 animate-pulse-slow"></div>
-      <div className="absolute bottom-0 right-0 w-[800px] h-[600px] bg-purple-600/10 rounded-full blur-[120px] -z-10 opacity-20"></div>
+    <div className="min-h-screen pt-20 relative overflow-hidden text-white selection:bg-primary-500/30">
+      <SpaceBackground />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 relative z-10">
 
@@ -50,7 +49,7 @@ const Landing = () => {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-primary-500"></span>
               </span>
-              v2.0 is now live
+              New features are live
             </div>
           </ScrollReveal>
 
@@ -152,27 +151,8 @@ const Landing = () => {
             </ScrollReveal>
             <ScrollReveal delay={0.2}>
               <div className="relative group">
-                <div className="absolute inset-0 bg-primary-500/20 blur-[100px] rounded-full group-hover:bg-primary-500/30 transition-all duration-500"></div>
-                <Card className="relative bg-dark-bg/80 backdrop-blur-xl border-white/10 overflow-hidden">
-                  <div className="flex items-center gap-2 px-4 py-3 border-b border-white/5 bg-white/5">
-                    <div className="flex gap-1.5">
-                      <div className="w-3 h-3 rounded-full bg-red-500/50"></div>
-                      <div className="w-3 h-3 rounded-full bg-yellow-500/50"></div>
-                      <div className="w-3 h-3 rounded-full bg-green-500/50"></div>
-                    </div>
-                    <div className="text-xs text-gray-500 font-mono ml-2">Profile.jsx</div>
-                  </div>
-                  <div className="p-6 font-mono text-sm">
-                    <div className="text-purple-400">const <span className="text-blue-400">Developer</span> = <span className="text-yellow-400">{"{"}</span></div>
-                    <div className="pl-4 text-gray-300">name: <span className="text-green-400">"Alex Rivera"</span>,</div>
-                    <div className="pl-4 text-gray-300">role: <span className="text-green-400">"Full Stack"</span>,</div>
-                    <div className="pl-4 text-gray-300">skills: <span className="text-yellow-400">["React", "Node", "AI"]</span>,</div>
-                    <div className="pl-4 text-gray-300">status: <span className="text-green-400">"Open to work"</span></div>
-                    <div className="text-yellow-400">{"}"}</div>
-
-                    <div className="mt-4 text-purple-400">await <span className="text-blue-400">DevConnect</span>.<span className="text-blue-300">connect</span>(<span className="text-yellow-400">Developer</span>);</div>
-                  </div>
-                </Card>
+                <div className="absolute inset-x-0 -bottom-10 h-40 bg-primary-500/10 blur-[100px] rounded-full group-hover:bg-primary-500/20 transition-all duration-500"></div>
+                <LiveTerminal />
               </div>
             </ScrollReveal>
           </div>

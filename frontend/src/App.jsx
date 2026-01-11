@@ -9,6 +9,7 @@ import { ThemeProvider } from './context/ThemeContext';
 import { SocketProvider } from './context/SocketContext';
 
 import Explore from './pages/Explore';
+import AuthSuccess from './pages/AuthSuccess';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/profile/:username" element={<Profile />} />
               <Route path="/explore" element={<Explore />} />
+              <Route path="/auth-success" element={<AuthSuccess />} />
             </Routes>
           </div>
         </Router>
